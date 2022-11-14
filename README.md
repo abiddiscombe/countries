@@ -2,6 +2,9 @@
 A lightweight read-only HTTP API for the [countries.geojson](https://github.com/datasets/geo-countries) dataset.  
 Serves the geometry of each country alongside a series of helper functions. Built with [KoaJS](https://koajs.com).
 
+> **Demo**  
+> Check out a demo of the API at [countries.abws.io](https://countries.abws.io) - testing usage only!
+
 ## API Documentation
 This API currently does not support authentication.  
 This API will return (Geo)JSON data.
