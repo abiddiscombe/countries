@@ -1,7 +1,7 @@
 // src/index.js
 
-import Koa from 'koa'
-import Router from '@koa/router'
+import Koa from 'npm:koa'
+import Router from 'npm:@koa/router'
 
 import { routes } from './routes.js'
 

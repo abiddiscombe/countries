@@ -1,8 +1,8 @@
 // src/handlers/countryRandomPoint.js
 
-import bbox from '@turf/bbox'
-import { randomPoint } from '@turf/random'
-import booleanPointInPolygon from '@turf/boolean-point-in-polygon'
+import bbox from 'npm:@turf/bbox'
+import { randomPoint } from 'npm:@turf/random'
+import booleanPointInPolygon from 'npm:@turf/boolean-point-in-polygon'
 
 import { cache } from '../utils/cache.js'
 import { time } from "../utils/time.js"
