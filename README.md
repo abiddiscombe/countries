@@ -1,45 +1,32 @@
-# countries-api 🗺️
-A lightweight read-only HTTP API for the [countries.geojson](https://github.com/datasets/geo-countries) dataset.  
-Serves the geometry of each country alongside a series of helper functions. Built with [KoaJS](https://koajs.com).
+# countries-api
+A lightweight HTTP REST JSON API for the [countries.geojson](https://github.com/datasets/geo-countries) dataset. Built on [Deno](https://deno.land) and KoaJS.
 
-> **Demo**  
-> Check out a demo of the API at [countries.abws.io](https://countries.abws.io) - testing usage only!
+## Documentation
 
-## API Documentation
-This API currently does not support authentication.  
-This API will return (Geo)JSON data.
+### `/`
+Returns the capabilities of the API.
 
-### Path: `/`
-Returns a list of all countries in the dataset, with links to geometry.
+### `/country`
+Returns a list of countries supported by the API.
 
-### Path: `/{countryCodeID}`
-Returns a GeoJSON FeatureCollection containing the geometry of the country requested.  
-The countryCodeID (CCID) represents a three-digit ISO_A3 country code. For example, `fin` will return the geometry of Finland, and `gbr` will return the geometry of the United Kingdom.
+### `/country/ccid`
+Takes a Country Code ID (CCID) and returns a GeoJSON FeatureCollection for the requested country. The CCID represents the official ISO_A3 Country Code. For example, `fin` will return the geometry of Finland, and `gbr` will return the geometry of the United Kingdom.
 
-### Path: `/{countryCodeID}/random`
-Returns a GeoJSON Feature Collection containing a randomised point(s) within the geometry of the country (as designed via the countryCodeID). By default, a single (1) point will be generated and returned. Any number of points between 1 and 1,000 can returned per request by passing the `?total=numberOfPoints` (integer) query parameter to the endpoint/
+## No Database?
+The source data (countries.geojson) is around 20 MB in size, it did not seem neccesary to store this data in a database. The GeoJSON file is stored as part of this repository, within `/src/data/`. The cost of configuring additional infastructure and ensuring data currency will be re-considered in future releases.
 
-## Docker Image
-The Dockerfile included in this repository will create a stateless container version of this server. The countries GeoJSON dataset is included. The container exposes an HTTP server on port `8080`.
+## No Tests?
+I'm currently learning more about testing as a wider concept. I want to add tests in a future release, particularly to verify the JSON response in different situations, such as the failed loading of the cache, or the input of an invalid CCID.
 
-## Developer Installation
-If you wish to fork or clone this repo, run the following commands to get started:
-
-``` bash
-# install packages
-npm install
-
-# updates the countries.geojson dataset
-node sandbox/preflight.js
-
-# run the dev server (via nodemon)
-npm run dev
-```
 
 ## License & Changelog
 License: GPL-3.0-only (see: `license.txt`)  
 
-### 1.0.0 - First Release
+### 2.0 - Refactored for Deno and TypeScript
+- Contributors: [abiddiscombe](https://github.com/abiddiscombe)
+- This project has been rewritten to use [Deno](https://deno.land) and TypeScript.
+
+### 1.0 - First Release
 - Contributors: [abiddiscombe](https://github.com/abiddiscombe)
 - Created the codebase as a new project.
 - Implemented the `/`, `/{countryCodeID}`, and `/{countryCodeID}/random` endpoints.
