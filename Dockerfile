@@ -1,7 +1,8 @@
-FROM node:16-alpine
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install
-COPY . .
+FROM denoland/deno:alpine
 EXPOSE 8080
-CMD [ "npm", "run", "production" ]
+WORKDIR /app
+USER deno
+COPY deps.ts .
+RUN deno cache deps.ts
+COPY . .
+CMD [ "deno", "run", "--allow-read", "--allow-env", "--allow-net", "src/index.ts" ]
