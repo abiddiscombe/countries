@@ -49,4 +49,6 @@ function returnCountryDetails(ctx) {
 		type: 'FeatureCollection',
 		features: countryDetail,
 	};
+
+	console.log(`[OK] Client Requested: '${sanitisedUserInput.ccid}'`);
 }

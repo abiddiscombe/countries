@@ -1,7 +1,7 @@
 // src/index.js
 
-import { Koa } from '../deps.ts';
-import { Router } from '../deps.ts';
+import { Koa } from './deps.ts';
+import { Router } from './deps.ts';
 
 import { loadCache } from './data/cache.ts';
 
@@ -27,8 +27,9 @@ app.use(async (ctx, next) => {
 
 app.use(router.routes());
 
-loadCache().then(() => {
-	app.listen(config.port, () => {
-		console.log(`🚀 Server listening on port ${config.port}`);
-	});
+console.log('[OK] Loading cache from source file...');
+await loadCache();
+console.log('[OK] Starting server...');
+app.listen(config.port, () => {
+	console.log(`[OK] Listening on port ${config.port}`);
 });
