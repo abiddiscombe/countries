@@ -22,7 +22,7 @@ I'm currently learning more about testing as a wider concept. I want to add test
 ## License & Changelog
 License: GPL-3.0-only (see: `license.txt`)  
 
-### 2.0 - Refactored for Deno and TypeScript
+### 2.0 - Refactored for Deno and Gradual TypeScript Support
 - Contributors: [abiddiscombe](https://github.com/abiddiscombe)
 - This project has been rewritten to use [Deno](https://deno.land) and TypeScript.
 

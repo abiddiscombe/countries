@@ -1,8 +1,11 @@
-FROM denoland/deno:alpine
+FROM denoland/deno:latest
 EXPOSE 8080
-WORKDIR /app
 USER deno
-COPY deps.ts .
-RUN deno cache deps.ts
-COPY . .
-CMD [ "deno", "run", "--allow-read", "--allow-env", "--allow-net", "src/index.ts" ]
+WORKDIR /app
+RUN mkdir ./src
+COPY src/deps.ts ./src
+RUN deno cache src/deps.ts
+COPY ./src ./src
+RUN deno cache src/index.ts
+RUN mkdir -p /var/tmp/log
+CMD ["run", "--allow-all", "src/index.ts"]
