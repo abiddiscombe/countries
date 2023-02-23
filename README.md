@@ -1,6 +1,10 @@
 # countries-api
 A lightweight HTTP REST JSON API for the [countries.geojson](https://github.com/datasets/geo-countries) dataset. Built on [Deno](https://deno.land) and KoaJS.
 
+> **✨ Live Demo**  
+> You can test-run this API at [countries.archiebiddiscombe.net](https://countries.archiebiddiscombe.net).  
+> This service is for demonstration and testing use only and may be taken offline at short-notice. Please play fair.
+
 ## Documentation
 
 ### `/`
