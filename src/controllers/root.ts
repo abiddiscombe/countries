@@ -3,7 +3,7 @@
 export { returnCapabilities };
 
 function returnCapabilities(ctx) {
-	ctx.body = {
+	ctx.response.body = {
 		ts: Math.floor(Date.now() / 1000),
 		title: 'Countries API',
 		capabilities: [

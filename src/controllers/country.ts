@@ -9,7 +9,7 @@ export { returnCountryDetails, returnCountryList };
 function returnCountryList(ctx) {
 	const countries = getCountryList();
 
-	ctx.body = {
+	ctx.response.body = {
 		ts: Math.floor(Date.now() / 1000),
 		title: 'Countries API > Country',
 		countries: countries,
@@ -22,8 +22,8 @@ function returnCountryDetails(ctx) {
 	};
 
 	if (!checkValidCCID(sanitisedUserInput.ccid)) {
-		ctx.status = 404;
-		ctx.body = {
+		ctx.response.status = 404;
+		ctx.response.body = {
 			ts: Math.floor(Date.now() / 1000),
 			title: `Countries API > Country > ${sanitisedUserInput.ccid} (Not Found)`,
 			error: 'The provided Country Code ID (CCID) was not recognised.',
@@ -34,8 +34,8 @@ function returnCountryDetails(ctx) {
 	const countryDetail = getCountryDetails(sanitisedUserInput.ccid);
 
 	if (countryDetail.length == 0) {
-		ctx.status = 500;
-		ctx.body = {
+		ctx.response.status = 500;
+		ctx.response.body = {
 			ts: Math.floor(Date.now() / 1000),
 			title: `Countries API > Country > ${sanitisedUserInput.ccid} (Internal Server Error)`,
 			error: 'The server was unable to process this request. Please try again later.',
@@ -43,7 +43,7 @@ function returnCountryDetails(ctx) {
 		return;
 	}
 
-	ctx.body = {
+	ctx.response.body = {
 		ts: Math.floor(Date.now() / 1000),
 		title: `Countries API > Country > ${sanitisedUserInput.ccid}`,
 		type: 'FeatureCollection',
