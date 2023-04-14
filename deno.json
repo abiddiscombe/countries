@@ -1,6 +1,8 @@
 {
+    "tasks": {
+        "dev": "deno run --allow-net --allow-read --watch src/index.ts"
+    },
     "imports": {
-        "koa": "npm:koa",
-        "koa-router": "npm:@koa/router"
+        "oak": "https://deno.land/x/oak/mod.ts"
     }
 }
