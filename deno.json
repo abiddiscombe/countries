@@ -1,16 +1,6 @@
 {
-    "fmt": {
-        "files": {
-            "include": [
-                "src/"
-            ]
-        },
-        "options": {
-            "useTabs": true,
-            "lineWidth": 200,
-            "indentWidth": 4,
-            "singleQuote": true,
-            "proseWrap": "preserve"
-        }
+    "imports": {
+        "koa": "npm:koa",
+        "koa-router": "npm:@koa/router"
     }
 }
