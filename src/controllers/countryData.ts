@@ -1,7 +1,7 @@
 // src/controllers/countryData.ts
 
 import { newHeader } from "../utilities/header.ts";
-import { getCountryDetails } from "../models/getCountryDetails.ts"
+import { getCountryDetails } from "../services/getCountryDetails.ts"
 
 export function countryData(ctx) {
 
