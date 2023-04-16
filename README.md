@@ -1,36 +1,31 @@
-# countries-api
-A lightweight HTTP REST JSON API for the [countries.geojson](https://github.com/datasets/geo-countries) dataset. Built on [Deno](https://deno.land) and KoaJS.
-
-> **✨ Live Demo**  
-> You can test-run this API at [countries.archiebiddiscombe.net](https://countries.archiebiddiscombe.net).  
-> This service is for demonstration and testing use only and may be taken offline at short-notice. Please play fair.
+# Countries API 🗺️
+A read-only GeoJSON API serving the [countries.geojson](https://github.com/datasets/geo-countries) dataset alongside some additional features. The API permits clients to GET a single country at a time. Built with the [Deno](https://deno.com/runtime) runtime, using the [Oak](https://oakserver.github.io/oak/) HTTP framework.
 
 ## Documentation
+This API is read-only; all endpoints permit a `GET` request and will return (formatted) JSON.
 
-### `/`
-Returns the capabilities of the API.
+**`/`**  
+Returns JSON. Provides metadata and a list of service endpoints.
 
-### `/country`
-Returns a list of countries supported by the API.
+**`/country`**  
+Returns JSON. Provides a list of the countries supported by the API and a link to each feature. The countries supported by this API are sourced from the [countries.geojson](https://github.com/datasets/geo-countries) dataset.
 
-### `/country/ccid`
-Takes a Country Code ID (CCID) and returns a GeoJSON FeatureCollection for the requested country. The CCID represents the official ISO_A3 Country Code. For example, `fin` will return the geometry of Finland, and `gbr` will return the geometry of the United Kingdom.
+**`/country/<ccid>`**  
+Returns GeoJSON. Provides a single feature contained within a FeatureCollection. The feature has properties and geometries for the country represented by the Country Code ID (CCID). A CCID is equal to an official `ISO_A3` code, [more on this here](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
 
-## No Database?
-The source data (countries.geojson) is around 20 MB in size, it did not seem neccesary to store this data in a database. The GeoJSON file is stored as part of this repository, within `/src/data/`. The cost of configuring additional infastructure and ensuring data currency will be re-considered in future releases.
+*For example, A CCID of `fin` will return the data for Finland; and `gbr` will return data for the United Kingdom.*
 
-## No Tests?
-I'm currently learning more about testing as a wider concept. I want to add tests in a future release, particularly to verify the JSON response in different situations, such as the failed loading of the cache, or the input of an invalid CCID.
+## Changelog
 
+3.0 - [@abiddiscombe](https://github.com/abiddiscombe)
+- Major refactor to improve code style and readability.
+- Switched to the [Oak](https://oakserver.github.io/oak/) HTTP Framework in order to test new forms of deployment (and because I like it!).
 
-## License & Changelog
-License: GPL-3.0-only (see: `license.txt`)  
+2.0 - [@abiddiscombe](https://github.com/abiddiscombe)
+- Code refactored to use the [Deno](https://deno.com/runtime) Runtime and TypeScript. Typescript support will be added gradually. The KoaJS framework and routing plugin are polyfilled from NPM.
+- All `/<ccid>` endpoints are now located behind a `/countries` prefix.
+- Removed the `<ccid>/random` endpoint due to faulty point data for countries with larger extents.
 
-### 2.0 - Refactored for Deno and Gradual TypeScript Support
-- Contributors: [abiddiscombe](https://github.com/abiddiscombe)
-- This project has been rewritten to use [Deno](https://deno.land) and TypeScript.
-
-### 1.0 - First Release
-- Contributors: [abiddiscombe](https://github.com/abiddiscombe)
-- Created the codebase as a new project.
-- Implemented the `/`, `/{countryCodeID}`, and `/{countryCodeID}/random` endpoints.
+1.0 - [@abiddiscombe](https://github.com/abiddiscombe)
+- Initialised the codebase as a new project.
+- Implemented the `/` (root), `/<ccid>`, and `/<ccid>/random` endpoints.
