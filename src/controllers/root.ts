@@ -4,10 +4,11 @@ import { newHeader } from "../utilities/header.ts"
 
 export function root(ctx) {
 	
-	const res = newHeader("Countries API - Service Capabilities");
+	const res = newHeader("Countries API - Service Information");
 
 	ctx.response.body = {
 		...res,
+		source: "https://github.com/abiddiscombe/countries",
 		capabilities: [
 			{
 				href: '/country',
