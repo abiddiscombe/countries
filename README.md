@@ -10,7 +10,7 @@ Returns JSON. Provides metadata and a list of service endpoints.
 **`/country`**  
 Returns JSON. Provides a list of the countries supported by the API and a link to each feature. The countries supported by this API are sourced from the [countries.geojson](https://github.com/datasets/geo-countries) dataset.
 
-**`/country/<ccid>`**  
+**`/country/:ccid`**  
 Returns GeoJSON. Provides a single feature contained within a FeatureCollection. The feature has properties and geometries for the country represented by the Country Code ID (CCID). A CCID is equal to an official `ISO_A3` code, [more on this here](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
 
 *For example, A CCID of `fin` will return the data for Finland; and `gbr` will return data for the United Kingdom.*
