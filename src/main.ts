@@ -1,7 +1,7 @@
 // src/main.ts
 
-import { Application, Router } from "oak";
-import { oakCors } from "cors"
+import { Application, Router } from "https://deno.land/x/oak/mod.ts";
+import { oakCors } from "https://deno.land/x/cors/mod.ts";
 
 import { loadCache } from './data/cache.ts';
 
