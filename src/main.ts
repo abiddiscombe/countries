@@ -1,6 +1,7 @@
 // src/main.ts
 
 import { Application, Router } from "oak";
+import { oakCors } from "cors"
 
 import { loadCache } from './data/cache.ts';
 
@@ -17,6 +18,8 @@ router.get('/country/:ccid', countryData);
 
 server.use(router.routes());
 server.use(router.allowedMethods())
+
+server.use(oakCors()) // any origin
 
 console.info("Server initialised. Listening on http://127.0.0.1:8080.");
 
