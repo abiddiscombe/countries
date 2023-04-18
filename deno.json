@@ -1,5 +1,8 @@
 {
     "tasks": {
         "dev": "deno run --allow-net --allow-read --watch src/main.ts"
+    },
+    "imports": {
+        "oak": "https://deno.land/x/oak/mod.ts"
     }
 }
