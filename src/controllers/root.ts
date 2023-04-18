@@ -15,7 +15,7 @@ export function root(ctx) {
 				desc: 'Lists all countries by Country Code ID (CCID) and provides links to their respective geometries.',
 			},
 			{
-				href: "/country/<ccid>",
+				href: "/country/:ccid",
 				desc: "Returns details and geometry for the specified Country Code ID (CCID)"
 			}
 		]
