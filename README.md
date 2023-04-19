@@ -35,6 +35,7 @@ return data for the United Kingdom._
 - Major refactor to improve code style and readability.
 - Switched to the [Oak](https://oakserver.github.io/oak/) HTTP Framework in
   order to test new forms of deployment (and because I like it!).
+- Switched to a CDN-based data source with local caching to adhere to Deno Deploy's T&Cs.
 
 2.0 - [@abiddiscombe](https://github.com/abiddiscombe)
 
