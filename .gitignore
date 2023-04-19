@@ -3,3 +3,7 @@
 
 # Deno
 deno.lock
+
+# JSON
+*.json
+*.geojson

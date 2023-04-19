@@ -3,7 +3,7 @@
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 import { oakCors } from "https://deno.land/x/cors/mod.ts";
 
-import { loadCache } from './data/cache.ts';
+import { initCache } from './utilities/cache.ts';
 
 import { root } from "./controllers/root.ts"
 import { countryList } from "./controllers/countryList.ts"
@@ -23,7 +23,7 @@ server.use(oakCors()) // any origin
 
 console.info("Server initialised. Listening on http://127.0.0.1:8080.");
 
-loadCache().then(async () => {
+initCache().then(async () => {
 	await server.listen({
 		port: 8080
 	});
