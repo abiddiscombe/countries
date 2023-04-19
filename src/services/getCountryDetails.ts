@@ -1,26 +1,38 @@
-// src/handlers/countryDetails.js
+// src/services/getCountryDetails.ts
 
-import { cache } from '../data/cache.ts';
+import { cache } from "../utilities/cache.ts";
 
-export function getCountryDetails(ccid) {
-	ccid = ccid.toLowerCase();
+function _parseResponse(feature: any, cacheStatus: boolean) {
+  return {
+    type: "Feature",
+    properties: {
+      href: `/country/${feature.properties.ISO_A3}`,
+      name: feature.properties.ADMIN,
+      code: feature.properties.ISO_A3,
+      cached: cacheStatus,
+    },
+    geometry: {
+      ...feature.geometry,
+    },
+  };
+}
 
-	const countryDetails = [];
+export async function getCountryDetails(ccid: string) {
+  if (!cache.validCountries.ISO_A3.includes(ccid)) {
+    return {}; // invalid ccid
+  }
 
-	for (const country of cache.countries.features) {
-		if (country.properties.ISO_A3 == ccid) {
-			countryDetails.push({
-				type: 'Feature',
-				properties: {
-					href: `/country/${ccid}`,
-					name: country.properties.ADMIN,
-					code: country.properties.ISO_A3,
-					flag: `https://countryflagsapi.com/svg/${country.properties.ISO_A3}`,
-				},
-				geometry: country.geometry,
-			});
-		}
-	}
+  for (const feature of cache.features) {
+    if (feature.properties.ISO_A3 == ccid) {
+      return _parseResponse(feature, true);
+    }
+  }
 
-	return countryDetails;
+  const url = `https://${cache.source}/countries/features/${ccid}.json`;
+  const src = await fetch(url);
+  const feature = await src.json();
+
+  cache.features.push(feature);
+
+  return _parseResponse(feature, false);
 }
