@@ -9,7 +9,6 @@ function _parseResponse(feature: any, cacheStatus: boolean) {
 			href: `/country/${feature.properties.ISO_A3}`,
 			name: feature.properties.ADMIN,
 			code: feature.properties.ISO_A3,
-			flag: `https://countryflagsapi.com/svg/${feature.properties.ISO_A3}`,
 			cached: cacheStatus
 		},
 		geometry: {
