@@ -3,14 +3,14 @@
 import { newHeader } from "../utilities/header.ts";
 import { getCountryDetails } from "../services/getCountryDetails.ts"
 
-export function countryData(ctx) {
+export async function countryData(ctx) {
 
-    const ccid = ctx.params.ccid.toLowerCase()
+    const ccid = ctx.params.ccid.toUpperCase()
     const res = newHeader(`Countries API - Country Data: ${ccid}`)
 
-    const returnedCountries = getCountryDetails(ccid)
+    const returnedCountries = await getCountryDetails(ccid)
 
-    if (!returnedCountries.length) {
+    if (!returnedCountries.type) {
         ctx.response.status = 404;
         ctx.response.body = {
             ...res,
@@ -22,7 +22,9 @@ export function countryData(ctx) {
     ctx.response.body = {
         ...res,
         type: "FeatureCollection",
-        features: returnedCountries
+        features: [
+            returnedCountries
+        ]
     }
 
 }
