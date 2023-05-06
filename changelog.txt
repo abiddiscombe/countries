@@ -1,0 +1,14 @@
+Version 3.0.0 (UNPUBLISHED)
+- Refactors to improve code readability.
+- Modifications for Deno Deploy compatibility.
+- Migration to the Oak (https://oakserver.github.io/oak/) HTTP Framework.
+- Switched to a CDN-based data source with local caching.
+
+Version 2.0.0 (UNPUBLISHED)
+- Code migrated to the [Deno](https://deno.com/runtime) Runtime and TypeScript.
+- All "/:ccid" endpoints are now located behind a "/countries" prefix.
+- Removed the "/:ccid/random" endpoint due to errors with larger countries.
+
+Version 1.0.0 (UNPUBLISHED)
+- The initial release of the Countries API Server, using NodeJS and Koa.
+- Implemented the "/", "/:ccid", and "/:ccid/random" endpoints.
