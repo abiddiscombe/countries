@@ -1,52 +1,35 @@
-# Countries API 🗺️
+# Countries API
 
-A read-only GeoJSON API serving the
-[countries.geojson](https://github.com/datasets/geo-countries) dataset alongside
-some additional features. The API permits clients to GET a single country at a
-time. Built with the [Deno](https://deno.com/runtime) runtime, using the
-[Oak](https://oakserver.github.io/oak/) HTTP framework.
+![Banner image showing country outlines](./media/banner.png)
 
-## Documentation
+An API for returning country metadata and GeoJSON geometry. I've built it using the [Deno](https://deno.com/runtime) runtime, with the [Oak](https://oakserver.github.io/oak/) HTTP framework and [MongoDB](https://mongodb.com); it is licensed under GNU GPL-3.
 
-This API is read-only; all endpoints permit a `GET` request and will return
-(formatted) JSON.
+The dataset behind this service is adapted from the [countries.geojson](https://github.com/datasets/geo-countries) project.
+
+## API Endpoints
+This API is read-only; all endpoints permit a `GET` request and will return formatted JSON or GeoJSON. Where specified, an `isoCode` represents the official `ISO_A2` code of each country in the dataset, [read more](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) here.
+
 
 **`/`**\
-Returns JSON. Provides metadata and a list of service endpoints.
+Returns API metadata and a list of primary service capabilities.
 
 **`/country`**\
-Returns JSON. Provides a list of the countries supported by the API and a link
-to each feature. The countries supported by this API are sourced from the
-[countries.geojson](https://github.com/datasets/geo-countries) dataset.
+Returns a list of the countries supported by the API and a link to each countries' properties.
 
-**`/country/:ccid`**\
-Returns GeoJSON. Provides a single feature contained within a FeatureCollection.
-The feature has properties and geometries for the country represented by the
-Country Code ID (CCID). A CCID is equal to an official `ISO_A3` code,
-[more on this here](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
+**`/country/:isoCode`**\
+Returns the metadata for the country represented by the `isoCode`, alongside links to related API capabilities and third-party services.
 
-_For example, A CCID of `fin` will return the data for Finland; and `gbr` will
-return data for the United Kingdom._
+**`/country/:isoCode/outline`**\
+Returns a GeoJSON FeatureCollection containing a polygon feature, which represents the outline of the specified country.
 
-## Changelog
+## Deployment
+The Countries API is designed for deployment behind an API Gateway (which will provide enhanced statistics and authentication mechanisms). Optional [Bearer Token Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication/) can be enabled to validate traffic between the gateway and the API server.
 
-3.0 - [@abiddiscombe](https://github.com/abiddiscombe)
+The server image (`amd64`) can be pulled directly from [Docker Hub](https://hub.docker.com/r/abiddiscombe/countries) as `abiddiscombe/countries`. The following environment variables are supported:
 
-- Major refactor to improve code style and readability.
-- Switched to the [Oak](https://oakserver.github.io/oak/) HTTP Framework in
-  order to test new forms of deployment (and because I like it!).
-- Switched to a CDN-based data source with local caching to adhere to Deno Deploy's T&Cs.
+- `MONGO_URI` (Mandatory)  
+A valid connection string to your MongoDB database. Your MongoDB database must contain a collection labelled `features` containing each feature from the source dataset ([countries.geojson](https://github.com/datasets/geo-countries)).
 
-2.0 - [@abiddiscombe](https://github.com/abiddiscombe)
-
-- Code refactored to use the [Deno](https://deno.com/runtime) Runtime and
-  TypeScript. Typescript support will be added gradually. The KoaJS framework
-  and routing plugin are polyfilled from NPM.
-- All `/<ccid>` endpoints are now located behind a `/countries` prefix.
-- Removed the `<ccid>/random` endpoint due to faulty point data for countries
-  with larger extents.
-
-1.0 - [@abiddiscombe](https://github.com/abiddiscombe)
-
-- Initialised the codebase as a new project.
-- Implemented the `/` (root), `/<ccid>`, and `/<ccid>/random` endpoints.
+- `AUTH_TOKEN`  
+Accepts a string for use as a security token. For security reasons, this token must be at least 20 characters long.  
+You must keep this token secure. **If a token is not supplied authentication will be disabled**.

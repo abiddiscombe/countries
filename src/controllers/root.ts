@@ -1,23 +1,18 @@
 // src/controllers/root.ts
 
-import { newHeader } from "../utilities/header.ts";
-
-export function root(ctx) {
-  const res = newHeader("Countries API - Service Information");
-
+// deno-lint-ignore no-explicit-any
+export function root(ctx: any) {
   ctx.response.body = {
-    ...res,
-    source: "https://github.com/abiddiscombe/countries",
+    ...ctx.state.header,
+    title: "Homepage & API Capabilities",
+    about: {
+      source: "https://github.com/abiddiscombe/countries",
+      version: "4.0.0",
+    },
     capabilities: [
       {
         href: "/country",
-        desc:
-          "Lists all countries by Country Code ID (CCID) and provides links to their respective geometries.",
-      },
-      {
-        href: "/country/:ccid",
-        desc:
-          "Returns details and geometry for the specified Country Code ID (CCID)",
+        desc: "A directory service for countries and related metadata.",
       },
     ],
   };

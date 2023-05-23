@@ -1,30 +1,42 @@
 // src/main.ts
 
-import { Application, Router } from "https://deno.land/x/oak/mod.ts";
-import { oakCors } from "https://deno.land/x/cors/mod.ts";
+import { Application, Router } from "oak";
+import { oakCors } from "cors";
 
-import { initCache } from "./utilities/cache.ts";
+import { makeHeader } from "./middlewares/header.ts";
+import { initMongoClient } from "./utilities/database.ts";
+import { resourceNotFound } from "./middlewares/notFound.ts";
+import { authentication, initAuthentication } from "./middlewares/auth.ts";
 
 import { root } from "./controllers/root.ts";
-import { countryList } from "./controllers/countryList.ts";
-import { countryData } from "./controllers/countryData.ts";
+import { country } from "./controllers/country.ts";
+import { countryDetails } from "./controllers/countryDetails.ts";
+import { countryOutline } from "./controllers/countryOutline.ts";
+
+initAuthentication();
+await initMongoClient();
 
 const server = new Application();
 const router = new Router();
 
 router.get("/", root);
-router.get("/country", countryList);
-router.get("/country/:ccid", countryData);
+router.get("/country", country);
+router.get("/country/:isoCode", countryDetails);
+router.get("/country/:isoCode/outline", countryOutline);
 
+server.use(oakCors());
+server.use(makeHeader);
+server.use(authentication);
 server.use(router.routes());
 server.use(router.allowedMethods());
+server.use(resourceNotFound);
 
-server.use(oakCors()); // any origin
+server.addEventListener("listen", ({ secure, hostname, port }) => {
+  const protocol = secure ? "https" : "http";
+  hostname = hostname ?? "localhost";
+  console.info(`Ready. Listening on ${protocol}://${hostname}:${port}.`);
+});
 
-console.info("Server initialised. Listening on http://127.0.0.1:8080.");
-
-initCache().then(async () => {
-  await server.listen({
-    port: 8080,
-  });
+await server.listen({
+  port: 8080,
 });
