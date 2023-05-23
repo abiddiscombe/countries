@@ -2,7 +2,7 @@
 
 ![Banner image showing country outlines](./media/banner.png)
 
-An API for returning country metadata and GeoJSON geometry. I've built it using the [Deno](https://deno.com/runtime) runtime, with the [Oak](https://oakserver.github.io/oak/) HTTP framework and [MongoDB](https://mongodb.com); it is licensed under GNU GPL-3.
+An API for returning country metadata and GeoJSON geometry. I've built it using the [Deno](https://deno.com/runtime) runtime, with the [Oak](https://oakserver.github.io/oak/) HTTP framework and [MongoDB](https://mongodb.com). It is licensed under GNU GPL-3, and is available on [Docker Hub](https://hub.docker.com/r/abiddiscombe/countries).
 
 The dataset behind this service is adapted from the [countries.geojson](https://github.com/datasets/geo-countries) project.
 
