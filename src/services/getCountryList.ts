@@ -1,14 +1,28 @@
-// src/services/getCountryList.ts
+// // src/services/getCountryList.ts
 
-import { cache } from "../utilities/cache.ts";
+import { mongoClient } from "../utilities/database.ts";
 
-export function getCountryList() {
-  const countries = [];
-  for (const id in cache.validCountries.ISO_A3) {
-    countries.push({
-      name: cache.validCountries.ADMIN[id],
-      href: `/country/${cache.validCountries.ISO_A3[id]}`,
-    });
-  }
-  return countries;
+interface Country {
+  properties: {
+    ADMIN: string;
+    ISO_A2: string;
+    ISO_A3: string;
+  };
+}
+
+export async function getCountryList() {
+  const countries = await mongoClient.find({
+    "type": { "$ne": null },
+  }, {
+    projection: {
+      _id: 0,
+      properties: 1,
+    },
+  }).toArray();
+  return countries.map((country: Country) => {
+    return [
+      country.properties.ADMIN,
+      country.properties.ISO_A2,
+    ];
+  });
 }

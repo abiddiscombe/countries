@@ -1,5 +1,14 @@
 {
+  "fmt": {
+    "include": ["src/"]
+  },
   "tasks": {
-    "dev": "deno run --allow-net --allow-read --watch src/main.ts"
+    "dev": "deno run --allow-net --allow-env --watch src/main.ts",
+    "start": "deno run --allow-net --allow-env src/main.ts"
+  },
+  "imports": {
+    "oak": "https://deno.land/x/oak/mod.ts",
+    "cors": "https://deno.land/x/cors/mod.ts",
+    "mongo": "https://deno.land/x/mongo/mod.ts"
   }
 }
