@@ -4,7 +4,7 @@
 
 An API for returning country metadata and GeoJSON geometry. I've built it using the [Deno](https://deno.com/runtime) runtime, with the [Oak](https://oakserver.github.io/oak/) HTTP framework and [MongoDB](https://mongodb.com). It is licensed under GNU GPL-3, and is available on [Docker Hub](https://hub.docker.com/r/abiddiscombe/countries).
 
-The dataset behind this service is adapted from the [countries.geojson](https://github.com/datasets/geo-countries) project.
+The dataset behind this service is adapted from the [countries.geojson](https://github.com/datasets/geo-countries) project, with all `-99` ISO_A3 countries removed.
 
 ## API Endpoints
 This API is read-only; all endpoints permit a `GET` request and will return formatted JSON or GeoJSON. Where specified, an `isoCode` represents the official `ISO_A2` code of each country in the dataset, [read more](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) here.
