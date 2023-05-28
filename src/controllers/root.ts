@@ -1,5 +1,7 @@
 // src/controllers/root.ts
 
+import { corsConfig } from "../utilities/cors.ts";
+
 // deno-lint-ignore no-explicit-any
 export function root(ctx: any) {
   ctx.response.body = {
@@ -8,6 +10,7 @@ export function root(ctx: any) {
     about: {
       source: "https://github.com/abiddiscombe/countries",
       version: "4.0.0",
+      corsOrigin: corsConfig.origin
     },
     capabilities: [
       {
