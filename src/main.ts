@@ -1,13 +1,13 @@
 // src/main.ts
 
 import { Application, Router } from "oak";
-import { oakCors } from "cors";
+
+import { initMongoClient } from "./utilities/database.ts";
 
 import { makeHeader } from "./middlewares/header.ts";
-import { initMongoClient } from "./utilities/database.ts";
+import { auth, initAuth } from "./middlewares/auth.ts";
+import { cors, initCors } from "./middlewares/cors.ts";
 import { resourceNotFound } from "./middlewares/notFound.ts";
-import { corsConfig, initCorsConfig } from "./utilities/cors.ts";
-import { authentication, initAuthentication } from "./middlewares/auth.ts";
 
 import { root } from "./controllers/root.ts";
 import { country } from "./controllers/country.ts";
@@ -15,8 +15,8 @@ import { countryDetails } from "./controllers/countryDetails.ts";
 import { countryOutline } from "./controllers/countryOutline.ts";
 import { countryDistance } from "./controllers/countryDistance.ts";
 
-initCorsConfig();
-initAuthentication();
+initAuth();
+initCors();
 await initMongoClient();
 
 const server = new Application();
@@ -28,9 +28,9 @@ router.get("/country/:isoCode", countryDetails);
 router.get("/country/:isoCode/outline", countryOutline);
 router.get("/country/:isoCode/distance", countryDistance);
 
-server.use(oakCors(corsConfig));
 server.use(makeHeader);
-server.use(authentication);
+server.use(auth);
+server.use(cors);
 server.use(router.routes());
 server.use(router.allowedMethods());
 server.use(resourceNotFound);

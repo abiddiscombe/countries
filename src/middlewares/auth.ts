@@ -1,11 +1,11 @@
 // src/middlewares/auth.ts
 
-export { authentication, initAuthentication };
+export { auth, initAuth };
 
 let _token = "";
 
 // deno-lint-ignore no-explicit-any
-async function authentication(ctx: any, next: any) {
+async function auth(ctx: any, next: any) {
   if (!_token) {
     await next();
     return;
@@ -28,7 +28,7 @@ async function authentication(ctx: any, next: any) {
   };
 }
 
-function initAuthentication() {
+function initAuth() {
   const token = Deno.env.get("AUTH_TOKEN");
   if (token) {
     if (token.length < 20) {
