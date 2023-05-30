@@ -41,6 +41,11 @@ export async function countryDetails(ctx: any) {
               `/country/${metadata.properties.ISO_A2.toLowerCase()}/outline`,
             name: "Return country outline in GeoJSON format.",
           },
+          {
+            href:
+              `/country/${metadata.properties.ISO_A2.toLowerCase()}/distance`,
+            name: "Calculate distance to country border from a point.",
+          },
         ],
       },
     };

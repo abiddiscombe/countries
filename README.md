@@ -22,6 +22,10 @@ Returns the metadata for the country represented by the `isoCode`, alongside lin
 **`/country/:isoCode/outline`**\
 Returns a GeoJSON FeatureCollection containing a polygon feature, which represents the outline of the specified country.
 
+**`/country/:isoCode/distance`**\
+Accepts a `point` argument in `lng,lat` format.\
+Returns whether the user-specified point resides within the boundaries of the specified country, and if not, the minimum distance (in kilometers) to the country border.
+
 ## Deployment
 The Countries API is designed for deployment behind an API Gateway (which will provide enhanced statistics and authentication mechanisms). Optional [Bearer Token Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication/) can be enabled to validate traffic between the gateway and the API server.
 

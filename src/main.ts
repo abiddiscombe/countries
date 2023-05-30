@@ -6,13 +6,14 @@ import { oakCors } from "cors";
 import { makeHeader } from "./middlewares/header.ts";
 import { initMongoClient } from "./utilities/database.ts";
 import { resourceNotFound } from "./middlewares/notFound.ts";
-import { initCorsConfig, corsConfig } from "./utilities/cors.ts";
-import { initAuthentication, authentication } from "./middlewares/auth.ts";
+import { corsConfig, initCorsConfig } from "./utilities/cors.ts";
+import { authentication, initAuthentication } from "./middlewares/auth.ts";
 
 import { root } from "./controllers/root.ts";
 import { country } from "./controllers/country.ts";
 import { countryDetails } from "./controllers/countryDetails.ts";
 import { countryOutline } from "./controllers/countryOutline.ts";
+import { countryDistance } from "./controllers/countryDistance.ts";
 
 initCorsConfig();
 initAuthentication();
@@ -25,6 +26,7 @@ router.get("/", root);
 router.get("/country", country);
 router.get("/country/:isoCode", countryDetails);
 router.get("/country/:isoCode/outline", countryOutline);
+router.get("/country/:isoCode/distance", countryDistance);
 
 server.use(oakCors(corsConfig));
 server.use(makeHeader);

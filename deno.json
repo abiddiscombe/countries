@@ -9,6 +9,7 @@
   "imports": {
     "oak": "https://deno.land/x/oak/mod.ts",
     "cors": "https://deno.land/x/cors/mod.ts",
-    "mongo": "https://deno.land/x/mongo/mod.ts"
+    "mongo": "https://deno.land/x/mongo/mod.ts",
+    "@turf/turf": "npm:@turf/turf"
   }
 }

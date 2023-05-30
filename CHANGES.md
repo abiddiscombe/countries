@@ -1,9 +1,9 @@
 # 🌱 Changelog
 
 ## Version 4.1.0 
-- [x] `#FIX` Removal of `-99` ISO_A3 countries from source database.
+- [x] `#FIX` Hotfix removal of `-99` ISO_A3 countries from source database.
 - [x] `#FEAT` Added support for a custom CORS origin.
-- [ ] `#FEAT` New endpoint (`/country/:isoCode/distance`) created for distance operations.
+- [x] `#FEAT` New endpoint (`/country/:isoCode/distance`) created for distance operations.
 - [x] `#DOCS` Changelog file converted into Markdown format.
 - [ ] `#DOCS` README.md banner recreated as a vector.
 
