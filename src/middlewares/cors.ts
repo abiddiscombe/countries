@@ -16,6 +16,6 @@ function initCors() {
     console.log(`CORS Accepting Custom Origin (${origin}).`);
     _cors = origin;
   } else {
-    console.warn("CORS Accepting All Origins (*).")
+    console.warn("CORS Accepting All Origins (*).");
   }
 }

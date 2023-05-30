@@ -9,8 +9,8 @@ export function root(ctx: any) {
       source: "https://github.com/abiddiscombe/countries",
       version: "4.0.0",
       cors: {
-        origin: ctx.response.headers.get("Access-Control-Allow-Origin")
-      }
+        origin: ctx.response.headers.get("Access-Control-Allow-Origin"),
+      },
     },
     capabilities: [
       {
