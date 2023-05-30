@@ -40,3 +40,6 @@ A valid connection string to your MongoDB database. The database must contain a 
 
 - `AUTH_TOKEN` (Optional)  
 Accepts a string for use as a security token with a minimum length of 20 characters. **If a token is not supplied, authentication will be disabled**.
+
+- `CORS_ORIGIN` (Optional)  
+Accepts a single, valid, domain name to be whitelisted for CORS access. **If nothing is provided, CORS will be configured to accept all origins via wildcard.**
