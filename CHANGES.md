@@ -5,7 +5,7 @@
 - [x] `#FEAT` Added support for a custom CORS origin.
 - [x] `#FEAT` New endpoint (`/country/:isoCode/distance`) created for distance operations.
 - [x] `#DOCS` Changelog file converted into Markdown format.
-- [ ] `#DOCS` README.md banner recreated as a vector.
+- [x] `#DOCS` README.md banner recreated as a vector.
 
 ## Version 4.0.0
 - [x] `#FIX` Created JSON responses for HTTP 404 & 500 errors.
