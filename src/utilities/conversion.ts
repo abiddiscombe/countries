@@ -7,7 +7,6 @@ function stringToNumberArray(rawString: string) {
     const array = rawString.split(",");
     return array.map((element) => {
       if (isNaN(element)) throw Error();
-      console.log(element);
       return parseFloat(element);
     });
   } catch {
