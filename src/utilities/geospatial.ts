@@ -9,8 +9,17 @@ function isPointInPolygon(point: number[], polygon: number[]) {
 }
 
 function distanceToPolygon(point: number[], polygon: number[]) {
-  const polygonAsLine = turf.polygonToLine(polygon);
-  return polygonAsLine.features.map((feature) => {
-    return turf.pointToLineDistance(point, feature);
-  }).sort()[0] || 0;
+  const output = turf.polygonToLine(polygon).features.map((feature) => {
+    const featureGeom = (feature.geometry.type === "MultiLineString")
+      ? turf.flatten(feature).features
+      : [feature];
+
+    return featureGeom.map((feature) => {
+      return turf.pointToLineDistance(point, feature);
+    }).sort()[0];
+  });
+
+  return output.sort((eleA: number, eleB: number) => {
+    return eleA - eleB;
+  })[0] || 0;
 }
