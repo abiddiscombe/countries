@@ -2,6 +2,7 @@
 
 import { Application, Router } from "oak";
 
+import { logInfo } from "./utilities/logging.ts";
 import { initMongoClient } from "./utilities/database.ts";
 
 import { makeHeader } from "./middlewares/header.ts";
@@ -38,7 +39,7 @@ server.use(resourceNotFound);
 server.addEventListener("listen", ({ secure, hostname, port }) => {
   const protocol = secure ? "https" : "http";
   hostname = hostname ?? "localhost";
-  console.info(`Ready. Listening on ${protocol}://${hostname}:${port}.`);
+  logInfo(`Listening on ${protocol}://${hostname}:${port}.`);
 });
 
 await server.listen({

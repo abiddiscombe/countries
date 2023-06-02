@@ -1,5 +1,6 @@
 // src/middlewares/auth.ts
 
+import { logWarn } from "../utilities/logging.ts";
 export { auth, initAuth };
 
 let _token = "";
@@ -35,8 +36,7 @@ function initAuth() {
       throw Error("Variable 'AUTH_TOKEN' is not of suitable length (20+).");
     }
     _token = token;
-    console.info("Authentication is enabled for all requests.");
   } else {
-    console.warn("Authentication is disabled for all requests.");
+    logWarn("Authentication is DISABLED for all requests.");
   }
 }

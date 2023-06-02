@@ -1,5 +1,7 @@
 // src/middlewares/cors.ts
 
+import { logInfo } from "../utilities/logging.ts";
+
 export { cors, initCors };
 
 let _cors = "*";
@@ -13,9 +15,7 @@ async function cors(ctx: any, next: any) {
 function initCors() {
   const origin = Deno.env.get("CORS_ORIGIN") || "";
   if (origin && !origin.includes(" ")) {
-    console.log(`CORS Accepting Custom Origin (${origin}).`);
     _cors = origin;
-  } else {
-    console.warn("CORS Accepting All Origins (*).");
   }
+  logInfo("CORS Origin Setting: " + _cors);
 }
