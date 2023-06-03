@@ -7,7 +7,7 @@ export function root(ctx: any) {
     title: "Homepage & API Capabilities",
     about: {
       source: "https://github.com/abiddiscombe/countries",
-      version: "4.0.0",
+      version: "4.1.0",
       cors: {
         origin: ctx.response.headers.get("Access-Control-Allow-Origin"),
       },
