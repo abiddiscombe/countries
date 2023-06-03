@@ -4,8 +4,9 @@
 - [x] `#FIX` Hotfix removal of `-99` ISO_A3 countries from source database.
 - [x] `#FEAT` Added support for a custom CORS origin.
 - [x] `#FEAT` New endpoint (`/country/:isoCode/distance`) created for distance operations.
-- [x] `#DOCS` Changelog file converted into Markdown format.
-- [x] `#DOCS` README.md banner recreated as a vector.
+- [x] `#FEAT` Uniformity in console.log formatting.
+- [x] `#DOCS` Changelog file converted into Markdown format (CHANGES.md).
+- [x] `#DOCS` README.md banner updated.
 
 ## Version 4.0.0
 - [x] `#FIX` Created JSON responses for HTTP 404 & 500 errors.
