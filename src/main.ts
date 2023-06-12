@@ -5,6 +5,7 @@ import { Application, Router } from 'oak';
 import { logInfo } from './utilities/logging.ts';
 import { initMongoClient } from './utilities/database.ts';
 
+import { telemetry } from './middlewares/telemetry.ts';
 import { makeHeader } from './middlewares/header.ts';
 import { auth, initAuth } from './middlewares/auth.ts';
 import { cors, initCors } from './middlewares/cors.ts';
@@ -29,6 +30,7 @@ router.get('/country/:isoCode', countryDetails);
 router.get('/country/:isoCode/outline', countryOutline);
 router.get('/country/:isoCode/distance', countryDistance);
 
+server.use(telemetry);
 server.use(makeHeader);
 server.use(auth);
 server.use(cors);
