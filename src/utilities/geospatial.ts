@@ -8,7 +8,9 @@ export function isPointInPolygon(point: number[], polygon: number[]) {
 
 export function distanceToPolygon(point: number[], polygon: number[]) {
     const output = turf.polygonToLine(polygon).features.map((feature) => {
-        const featureGeom = (feature.geometry.type === 'MultiLineString') ? turf.flatten(feature).features : [feature];
+        const featureGeom = (feature.geometry.type === 'MultiLineString')
+            ? turf.flatten(feature).features
+            : [feature];
 
         return featureGeom.map((feature) => {
             return turf.pointToLineDistance(point, feature);
