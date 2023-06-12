@@ -1,7 +1,5 @@
 // src/middlewares/cors.ts
 
-import { logInfo } from '../utilities/logging.ts';
-
 let _cors = '*';
 
 // deno-lint-ignore no-explicit-any
@@ -15,5 +13,5 @@ export function initCors() {
     if (origin && !origin.includes(' ')) {
         _cors = origin;
     }
-    logInfo('CORS Origin Setting: ' + _cors);
+    console.info('[ INFO ] Enabled Custom CORS Origin: ' + _cors);
 }

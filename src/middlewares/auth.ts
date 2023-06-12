@@ -1,7 +1,5 @@
 // src/middlewares/auth.ts
 
-import { logWarn } from '../utilities/logging.ts';
-
 let _token = '';
 
 // deno-lint-ignore no-explicit-any
@@ -36,6 +34,6 @@ export function initAuth() {
         }
         _token = token;
     } else {
-        logWarn('Authentication is DISABLED for all requests.');
+        console.warn('[ WARN ] Server authentication is DISABLED.');
     }
 }

@@ -7,7 +7,7 @@ export let mongoClient: any;
 
 export async function initMongoClient() {
     if (mongoClient) {
-        console.warn('Client previously initialized.');
+        console.warn('[ WARN ] The mongoClient was previously initialized.');
         return;
     }
 
@@ -18,9 +18,8 @@ export async function initMongoClient() {
         const MongoConnection = new MongoClient();
         await MongoConnection.connect(mongoURI);
         mongoClient = await MongoConnection.database().collection('features');
+        console.log('[ INFO ] Successfully connected to the MongoDB instance');
     } catch {
-        throw Error(
-            'Connection to MongoDB Failed. Check connection and credentials.',
-        );
+        throw Error('Connection to MongoDB Failed. Check connection and credentials.');
     }
 }

@@ -1,7 +1,6 @@
 // src/middlewares/telemetry.ts
 
 export async function telemetry(ctx: any, next: any) {
-
     // Future editions of this middleware may
     // opt to send telemetry to a specialist
     // reporting service. For now, reporting
