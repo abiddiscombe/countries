@@ -2,12 +2,10 @@
 
 import { MongoClient } from 'mongo';
 
-export { initMongoClient, mongoClient };
-
 // deno-lint-ignore no-explicit-any
-let mongoClient: any;
+export let mongoClient: any;
 
-async function initMongoClient() {
+export async function initMongoClient() {
     if (mongoClient) {
         console.warn('Client previously initialized.');
         return;

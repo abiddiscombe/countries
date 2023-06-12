@@ -2,13 +2,11 @@
 
 import * as turf from '@turf/turf';
 
-export { distanceToPolygon, isPointInPolygon };
-
-function isPointInPolygon(point: number[], polygon: number[]) {
+export function isPointInPolygon(point: number[], polygon: number[]) {
     return turf.booleanPointInPolygon(point, polygon);
 }
 
-function distanceToPolygon(point: number[], polygon: number[]) {
+export function distanceToPolygon(point: number[], polygon: number[]) {
     const output = turf.polygonToLine(polygon).features.map((feature) => {
         const featureGeom = (feature.geometry.type === 'MultiLineString') ? turf.flatten(feature).features : [feature];
 
