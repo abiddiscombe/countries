@@ -15,11 +15,11 @@ export async function countryDistance(ctx: any) {
     };
 
     if (!pointGeom) {
-        ctx.response.status = 0;
+        ctx.response.status = 400;
         ctx.response.body = {
             ...header,
             error: {
-                code: 0,
+                code: 400,
                 desc: 'Point coordinates (point) are missing.',
             },
         };
@@ -29,11 +29,11 @@ export async function countryDistance(ctx: any) {
     const pointGeomArray = stringToNumberArray(pointGeom);
 
     if (!pointGeomArray || pointGeomArray.length != 2) {
-        ctx.response.status = 0;
+        ctx.response.status = 400;
         ctx.response.body = {
             ...header,
             error: {
-                code: 0,
+                code: 400,
                 desc: 'Point coordinates (point) are invalid.',
             },
         };
