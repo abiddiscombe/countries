@@ -4,14 +4,17 @@ import { getCountryList } from '../services/getCountryList.ts';
 
 // deno-lint-ignore no-explicit-any
 export async function country(ctx: any) {
-    const title = 'Countries List';
+    const header = {
+        time: Math.floor(Date.now() / 1000),
+        host: 'Countries API',
+        title: 'Countries List'
+    };
 
     try {
         const countries = await getCountryList();
 
         ctx.response.body = {
-            ...ctx.state.header,
-            title: title,
+            ...header,
             countries: countries.map((country: string[]) => {
                 return {
                     href: `/country/${country[1].toLowerCase()}`,
@@ -22,8 +25,7 @@ export async function country(ctx: any) {
     } catch {
         ctx.response.status = 500;
         ctx.response.body = {
-            ...ctx.state.header,
-            title: title,
+            ...header,
             error: {
                 code: 500,
                 desc: 'Internal Service Error. Please try again later.',

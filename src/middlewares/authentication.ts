@@ -1,9 +1,26 @@
-// src/middlewares/auth.ts
+// src/middlewares/authentication.ts
 
 let _token = '';
 
+export const authentication = {
+    setup,
+    handler
+}
+
+function setup() {
+    const token = Deno.env.get('AUTH_TOKEN');
+    if (token) {
+        if (token.length < 20) {
+            throw Error('Variable \'AUTH_TOKEN\' is not of suitable length (20+).');
+        }
+        _token = token;
+    } else {
+        console.warn('[ WARN ] Server authentication is DISABLED.');
+    }
+}
+
 // deno-lint-ignore no-explicit-any
-export async function auth(ctx: any, next: any) {
+async function handler(ctx: any, next: any) {
     if (!_token) {
         await next();
         return;
@@ -26,14 +43,3 @@ export async function auth(ctx: any, next: any) {
     };
 }
 
-export function initAuth() {
-    const token = Deno.env.get('AUTH_TOKEN');
-    if (token) {
-        if (token.length < 20) {
-            throw Error('Variable \'AUTH_TOKEN\' is not of suitable length (20+).');
-        }
-        _token = token;
-    } else {
-        console.warn('[ WARN ] Server authentication is DISABLED.');
-    }
-}

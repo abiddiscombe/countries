@@ -6,15 +6,18 @@ import { distanceToPolygon, isPointInPolygon } from '../utilities/geospatial.ts'
 
 // deno-lint-ignore no-explicit-any
 export async function countryDistance(ctx: any) {
-    const title = 'Country Distance';
     const isoCode = ctx.params.isoCode.toUpperCase();
     const pointGeom = ctx.request.url.searchParams.get('point') || '';
+    const header = {
+        time: Math.floor(Date.now() / 1000),
+        host: 'Countries API',
+        title: 'Country Distance'
+    };
 
     if (!pointGeom) {
         ctx.response.status = 0;
         ctx.response.body = {
-            ...ctx.state.header,
-            title: title,
+            ...header,
             error: {
                 code: 0,
                 desc: 'Point coordinates (point) are missing.',
@@ -28,8 +31,7 @@ export async function countryDistance(ctx: any) {
     if (!pointGeomArray || pointGeomArray.length != 2) {
         ctx.response.status = 0;
         ctx.response.body = {
-            ...ctx.state.header,
-            title: title,
+            ...header,
             error: {
                 code: 0,
                 desc: 'Point coordinates (point) are invalid.',
@@ -44,8 +46,7 @@ export async function countryDistance(ctx: any) {
         if (!country.properties) {
             ctx.response.status = 404;
             ctx.response.body = {
-                ...ctx.state.header,
-                title: title,
+                ...header,
                 error: {
                     code: 404,
                     desc: 'The ISO_A2 code (\'isoCode\') provided is invalid.',
@@ -60,8 +61,7 @@ export async function countryDistance(ctx: any) {
         );
 
         ctx.response.body = {
-            ...ctx.state.header,
-            title: title,
+            ...header,
             source: {
                 lng: pointGeomArray[0],
                 lat: pointGeomArray[1],
@@ -78,8 +78,7 @@ export async function countryDistance(ctx: any) {
     } catch {
         ctx.response.status = 500;
         ctx.response.body = {
-            ...ctx.state.header,
-            title: title,
+            ...header,
             error: {
                 code: 500,
                 desc: 'Internal Service Error. Please try again later.',

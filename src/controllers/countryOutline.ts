@@ -4,8 +4,12 @@ import { getCountryOutline } from '../services/getCountryOutline.ts';
 
 // deno-lint-ignore no-explicit-any
 export async function countryOutline(ctx: any) {
-    const title = 'Country Outline';
     const isoCode = ctx.params.isoCode.toUpperCase();
+    const header = {
+        time: Math.floor(Date.now() / 1000),
+        host: 'Countries API',
+        title: 'Country Outline'
+    };
 
     try {
         const country = await getCountryOutline(isoCode);
@@ -13,8 +17,7 @@ export async function countryOutline(ctx: any) {
         if (!country.properties) {
             ctx.response.status = 404;
             ctx.response.body = {
-                ...ctx.state.header,
-                title: title,
+                ...header,
                 error: {
                     code: 404,
                     desc: 'The ISO_A2 code (\'isoCode\') provided is invalid.',
@@ -24,16 +27,14 @@ export async function countryOutline(ctx: any) {
         }
 
         ctx.response.body = {
-            ...ctx.state.header,
-            title: title,
+            ...header,
             type: 'FeatureCollection',
             features: [country],
         };
     } catch {
         ctx.response.status = 500;
         ctx.response.body = {
-            ...ctx.state.header,
-            title: title,
+            ...header,
             error: {
                 code: 500,
                 desc: 'Internal Service Error. Please try again later.',

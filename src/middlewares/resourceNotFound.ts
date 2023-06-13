@@ -1,7 +1,11 @@
-// src/middlewares/notFound.ts
+// src/middlewares/resourceNotFound.ts
+
+export const resourceNotFound = {
+    handler
+}
 
 // deno-lint-ignore no-explicit-any
-export function resourceNotFound(ctx: any) {
+function handler(ctx: any) {
     ctx.response.status = 404;
     ctx.response.body = {
         ...ctx.state.header,

@@ -4,8 +4,12 @@ import { getCountryDetails } from '../services/getCountryDetails.ts';
 
 // deno-lint-ignore no-explicit-any
 export async function countryDetails(ctx: any) {
-    const title = 'Country Metadata & Service Links';
     const isoCode = ctx.params.isoCode.toUpperCase();
+    const header = {
+        time: Math.floor(Date.now() / 1000),
+        host: 'Countries API',
+        title: 'Country Metadata & Service Links'
+    };
 
     try {
         const metadata = await getCountryDetails(isoCode);
@@ -13,8 +17,7 @@ export async function countryDetails(ctx: any) {
         if (!metadata.properties) {
             ctx.response.status = 404;
             ctx.response.body = {
-                ...ctx.state.header,
-                title: title,
+                ...header,
                 error: {
                     code: 404,
                     desc: 'The ISO_A2 code (\'isoCode\') provided is invalid.',
@@ -23,9 +26,10 @@ export async function countryDetails(ctx: any) {
             return;
         }
 
+        header.title += ` (for ${isoCode})`;
+
         ctx.response.body = {
-            ...ctx.state.header,
-            title: title + ` (for ${isoCode})`,
+            ...header,
             metadata: {
                 ADMIN: metadata.properties.ADMIN,
                 ISO_A2: metadata.properties.ISO_A2,
@@ -49,8 +53,7 @@ export async function countryDetails(ctx: any) {
     } catch {
         ctx.response.status = 500;
         ctx.response.body = {
-            ...ctx.state.header,
-            title: title,
+            ...header,
             error: {
                 code: 500,
                 desc: 'Internal Service Error. Please try again later.',

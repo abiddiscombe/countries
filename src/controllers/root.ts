@@ -2,8 +2,13 @@
 
 // deno-lint-ignore no-explicit-any
 export function root(ctx: any) {
+    const header = {
+        time: Math.floor(Date.now() / 1000),
+        host: 'Countries API',
+        title: 'Country Outline'
+    };
     ctx.response.body = {
-        ...ctx.state.header,
+        ...header,
         title: 'Homepage & API Capabilities',
         about: {
             source: 'https://github.com/abiddiscombe/countries',
