@@ -4,6 +4,7 @@ export const telemetry = {
     handler
 }
 
+// deno-lint-ignore no-explicit-any
 async function handler(ctx: any, next: any) {
 
     // Future editions of this middleware may
