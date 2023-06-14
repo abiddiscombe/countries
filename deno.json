@@ -1,6 +1,9 @@
 {
   "fmt": {
-    "include": ["src/"]
+    "include": ["src/"],
+    "lineWidth": 100,
+    "indentWidth": 4,
+    "singleQuote": true
   },
   "tasks": {
     "dev": "deno run --allow-net --allow-env --watch src/main.ts",

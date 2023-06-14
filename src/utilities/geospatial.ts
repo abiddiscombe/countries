@@ -1,25 +1,23 @@
 // src/utilities/geospatial.ts
 
-import * as turf from "@turf/turf";
+import * as turf from '@turf/turf';
 
-export { distanceToPolygon, isPointInPolygon };
-
-function isPointInPolygon(point: number[], polygon: number[]) {
-  return turf.booleanPointInPolygon(point, polygon);
+export function isPointInPolygon(point: number[], polygon: number[]) {
+    return turf.booleanPointInPolygon(point, polygon);
 }
 
-function distanceToPolygon(point: number[], polygon: number[]) {
-  const output = turf.polygonToLine(polygon).features.map((feature) => {
-    const featureGeom = (feature.geometry.type === "MultiLineString")
-      ? turf.flatten(feature).features
-      : [feature];
+export function distanceToPolygon(point: number[], polygon: number[]) {
+    const output = turf.polygonToLine(polygon).features.map((feature) => {
+        const featureGeom = (feature.geometry.type === 'MultiLineString')
+            ? turf.flatten(feature).features
+            : [feature];
 
-    return featureGeom.map((feature) => {
-      return turf.pointToLineDistance(point, feature);
-    }).sort()[0];
-  });
+        return featureGeom.map((feature) => {
+            return turf.pointToLineDistance(point, feature);
+        }).sort()[0];
+    });
 
-  return output.sort((eleA: number, eleB: number) => {
-    return eleA - eleB;
-  })[0] || 0;
+    return output.sort((eleA: number, eleB: number) => {
+        return eleA - eleB;
+    })[0] || 0;
 }
