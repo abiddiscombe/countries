@@ -1,28 +1,13 @@
 // // src/services/getCountryList.ts
 
-import { mongoClient } from '../utilities/database.ts';
+import { Feature } from 'geojsonTypes';
+import { cache } from '../utilities/cache.ts';
 
-interface Country {
-    properties: {
-        ADMIN: string;
-        ISO_A2: string;
-        ISO_A3: string;
-    };
-}
-
-export async function getCountryList() {
-    const countries = await mongoClient.find({
-        'type': { '$ne': null },
-    }, {
-        projection: {
-            _id: 0,
-            properties: 1,
-        },
-    }).toArray();
-    return countries.map((country: Country) => {
+export function getCountryList() {
+    return cache.features.map((feature: Feature) => {
         return [
-            country.properties.ADMIN,
-            country.properties.ISO_A2,
+            feature.properties?.ADMIN,
+            feature.properties?.ISO_A2,
         ];
     });
 }

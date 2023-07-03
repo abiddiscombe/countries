@@ -1,14 +1,13 @@
 // src/services/getCountryOutline.ts
 
-import { mongoClient } from '../utilities/database.ts';
+import { Feature } from 'geojsonTypes';
+import { cache } from '../utilities/cache.ts';
 
-export async function getCountryOutline(isoCode: string) {
-    const matches = await mongoClient.find({
-        'properties.ISO_A2': isoCode,
-    }, {
-        projection: {
-            _id: 0,
-        },
-    }).toArray();
+export function getCountryOutline(isoCode: string) {
+    const matches = cache.features.filter((feature: Feature) => {
+        if (feature.properties?.ISO_A2 === isoCode) {
+            return feature;
+        }
+    });
     return (matches.length) ? matches[0] : {};
 }
