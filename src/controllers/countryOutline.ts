@@ -3,16 +3,16 @@
 import { getCountryOutline } from '../services/getCountryOutline.ts';
 
 // deno-lint-ignore no-explicit-any
-export async function countryOutline(ctx: any) {
+export function countryOutline(ctx: any) {
     const isoCode = ctx.params.isoCode.toUpperCase();
     const header = {
         time: Math.floor(Date.now() / 1000),
         host: 'Countries API',
-        title: 'Country Outline'
+        title: 'Country Outline',
     };
 
     try {
-        const country = await getCountryOutline(isoCode);
+        const country = getCountryOutline(isoCode);
 
         if (!country.properties) {
             ctx.response.status = 404;

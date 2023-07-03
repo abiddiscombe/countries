@@ -3,15 +3,15 @@
 import { getCountryList } from '../services/getCountryList.ts';
 
 // deno-lint-ignore no-explicit-any
-export async function country(ctx: any) {
+export function country(ctx: any) {
     const header = {
         time: Math.floor(Date.now() / 1000),
         host: 'Countries API',
-        title: 'Countries List'
+        title: 'Countries List',
     };
 
     try {
-        const countries = await getCountryList();
+        const countries = getCountryList();
 
         ctx.response.body = {
             ...header,

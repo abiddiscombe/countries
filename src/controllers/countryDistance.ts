@@ -5,13 +5,13 @@ import { stringToNumberArray } from '../utilities/conversion.ts';
 import { distanceToPolygon, isPointInPolygon } from '../utilities/geospatial.ts';
 
 // deno-lint-ignore no-explicit-any
-export async function countryDistance(ctx: any) {
+export function countryDistance(ctx: any) {
     const isoCode = ctx.params.isoCode.toUpperCase();
     const pointGeom = ctx.request.url.searchParams.get('point') || '';
     const header = {
         time: Math.floor(Date.now() / 1000),
         host: 'Countries API',
-        title: 'Country Distance'
+        title: 'Country Distance',
     };
 
     if (!pointGeom) {
@@ -41,7 +41,7 @@ export async function countryDistance(ctx: any) {
     }
 
     try {
-        const country = await getCountryOutline(isoCode);
+        const country = getCountryOutline(isoCode);
 
         if (!country.properties) {
             ctx.response.status = 404;

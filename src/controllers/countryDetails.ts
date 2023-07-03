@@ -3,16 +3,16 @@
 import { getCountryDetails } from '../services/getCountryDetails.ts';
 
 // deno-lint-ignore no-explicit-any
-export async function countryDetails(ctx: any) {
+export function countryDetails(ctx: any) {
     const isoCode = ctx.params.isoCode.toUpperCase();
     const header = {
         time: Math.floor(Date.now() / 1000),
         host: 'Countries API',
-        title: 'Country Metadata & Service Links'
+        title: 'Country Metadata & Service Links',
     };
 
     try {
-        const metadata = await getCountryDetails(isoCode);
+        const metadata = getCountryDetails(isoCode);
 
         if (!metadata.properties) {
             ctx.response.status = 404;

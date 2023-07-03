@@ -1,8 +1,8 @@
 // src/middlewares/resourceNotFound.ts
 
 export const resourceNotFound = {
-    handler
-}
+    handler,
+};
 
 // deno-lint-ignore no-explicit-any
 function handler(ctx: any) {

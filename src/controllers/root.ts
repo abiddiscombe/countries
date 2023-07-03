@@ -5,7 +5,7 @@ export function root(ctx: any) {
     const header = {
         time: Math.floor(Date.now() / 1000),
         host: 'Countries API',
-        title: 'Country Outline'
+        title: 'Country Outline',
     };
     ctx.response.body = {
         ...header,

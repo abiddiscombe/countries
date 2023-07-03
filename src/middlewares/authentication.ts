@@ -4,8 +4,8 @@ let _token = '';
 
 export const authentication = {
     setup,
-    handler
-}
+    handler,
+};
 
 function setup() {
     const token = Deno.env.get('AUTH_TOKEN');
@@ -42,4 +42,3 @@ async function handler(ctx: any, next: any) {
         },
     };
 }
-
