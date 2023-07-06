@@ -9,8 +9,11 @@ export const cache: FeatureCollection = {
 
 export async function initCache() {
     try {
-        const raw = await Deno.readTextFile('src/data/countries.geojson');
-        cache.features = JSON.parse(raw).features;
+        const dataRaw = await Deno.readTextFile('src/data/countries.geojson');
+        const dataParsed = JSON.parse(dataRaw);
+        for (const feature of dataParsed.features) {
+            cache.features.push(feature);
+        }
     } catch {
         throw new Error('Failed to read or parse the source dataset.');
     }

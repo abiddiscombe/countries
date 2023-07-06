@@ -1,5 +1,7 @@
 // src/middlewares/authentication.ts
 
+import { type Context } from 'oak';
+
 let _token = '';
 
 export const authentication = {
@@ -19,8 +21,7 @@ function setup() {
     }
 }
 
-// deno-lint-ignore no-explicit-any
-async function handler(ctx: any, next: any) {
+async function handler(ctx: Context, next: () => Promise<unknown>) {
     if (!_token) {
         await next();
         return;

@@ -3,7 +3,6 @@
 import { Application, Router } from 'oak';
 
 import { initCache } from './utilities/cache.ts';
-
 import { telemetry } from './middlewares/telemetry.ts';
 import { authentication } from './middlewares/authentication.ts';
 import { corsOriginRules } from './middlewares/corsOriginRules.ts';

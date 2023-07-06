@@ -1,5 +1,7 @@
 // src/middlewares/corsOriginRules.ts
 
+import { type Context } from 'oak';
+
 let _cors = '*';
 
 export const corsOriginRules = {
@@ -15,8 +17,7 @@ function setup() {
     console.info('[ INFO ] Enabled Custom CORS Origin: ' + _cors);
 }
 
-// deno-lint-ignore no-explicit-any
-async function handler(ctx: any, next: any) {
+async function handler(ctx: Context, next: () => Promise<unknown>) {
     ctx.response.headers.set('Access-Control-Allow-Origin', _cors);
     await next();
 }
