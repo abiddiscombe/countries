@@ -2,6 +2,7 @@
 
 import { Application, Router } from 'oak';
 
+import { FlagsAPI } from './utilities/config.ts';
 import { initCache } from './utilities/cache.ts';
 import { telemetry } from './middlewares/telemetry.ts';
 import { authentication } from './middlewares/authentication.ts';
@@ -15,6 +16,7 @@ import { countryOutline } from './controllers/countryOutline.ts';
 import { countryDistance } from './controllers/countryDistance.ts';
 
 await initCache();
+FlagsAPI.setup();
 authentication.setup();
 corsOriginRules.setup();
 

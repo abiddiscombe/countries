@@ -28,7 +28,7 @@ Requires a `point` query parameter in `lng,lat` format (e.g. `?point=-17.7986,64
 Returns whether the `point` resides within the boundaries of the specified country, and if not, the minimum distance in kilometers to the border.
 
 ## No Database?
-Prior to version 4.3.0, the Countries API used MongoDB to store each feature. These features are now stored as a local ~20 MB GeoJSON document. The document is now read into memory at startup. Removing the database results in:
+Prior to version 4.3.0, the Countries API used MongoDB to store each feature. These features are now stored as a local ~20 MB GeoJSON document which is read into memory at startup. Removing the database requirement results in:
 - A simplified deployment process.
 - Reduced costs of running the service.
 - Reduced latency when handling requests.
@@ -43,3 +43,6 @@ If you are deploying the service to be accessed behind an API gateway or proxy, 
 
 - `CORS_ORIGIN`\
 Accepts a single, valid, domain name can be whitelisted via CORS response headers. **If nothing is provided, CORS will be configured to accept all origins via a wildcard.**
+
+- `FLAGS_API`\
+Permits the user to specify whether the API should include links to country flags, which are hosted externally via [Flagpedia.net](https://flagpedia.net/). Accepts the following strings: `true` (default), and `false`.

@@ -3,6 +3,7 @@
 import { type RouterContext } from 'oak';
 import { Feature } from 'geojsonTypes';
 
+import { FlagsAPI } from '../utilities/config.ts';
 import { getCountryFeature } from '../services/getCountryFeature.ts';
 
 export function countryDetails(ctx: RouterContext<'/country/:isoCode'>) {
@@ -47,20 +48,31 @@ function handleCountryFound(ctx: RouterContext<'/country/:isoCode'>, country: Fe
             ADMIN: country.properties?.ADMIN,
             ISO_A2: country.properties?.ISO_A2,
             ISO_A3: country.properties?.ISO_A3,
-            services: [
-                {
-                    href: `https://flagcdn.com/${country.properties?.ISO_A2.toLowerCase()}.svg`,
-                    name: 'Link to https://flagpedia.net for country flag.',
-                },
-                {
-                    href: `/country/${country.properties?.ISO_A2.toLowerCase()}/outline`,
-                    name: 'Return country outline in GeoJSON format.',
-                },
-                {
-                    href: `/country/${country.properties?.ISO_A2.toLowerCase()}/distance`,
-                    name: 'Calculate distance to country border from a point.',
-                },
-            ],
+            services: _populateServiceList(country.properties?.ISO_A2),
         },
     };
+}
+
+function _populateServiceList(isoCode: string) {
+    isoCode = isoCode.toLowerCase();
+    const services = [];
+
+    if (FlagsAPI.enabled) {
+        services.push({
+            href: `https://flagcdn.com/${isoCode}.svg`,
+            name: 'Link to https://flagpedia.net for country flag.',
+        });
+    }
+
+    services.push({
+        href: `/country/${isoCode}/outline`,
+        name: 'Return country outline in GeoJSON format.',
+    });
+
+    services.push({
+        href: `/country/${isoCode}/distance`,
+        name: 'Calculate distance to country border from a point.',
+    });
+
+    return services;
 }
