@@ -2,8 +2,8 @@
 
 import { Application, Router } from 'oak';
 
-import { initMongoClient } from './utilities/database.ts';
-
+import { FlagsAPI } from './utilities/config.ts';
+import { initCache } from './utilities/cache.ts';
 import { telemetry } from './middlewares/telemetry.ts';
 import { authentication } from './middlewares/authentication.ts';
 import { corsOriginRules } from './middlewares/corsOriginRules.ts';
@@ -15,9 +15,10 @@ import { countryDetails } from './controllers/countryDetails.ts';
 import { countryOutline } from './controllers/countryOutline.ts';
 import { countryDistance } from './controllers/countryDistance.ts';
 
+await initCache();
+FlagsAPI.setup();
 authentication.setup();
 corsOriginRules.setup();
-await initMongoClient();
 
 const server = new Application();
 const router = new Router();

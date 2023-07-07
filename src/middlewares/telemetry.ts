@@ -1,12 +1,12 @@
 // src/middlewares/telemetry.ts
 
+import { type Context } from 'oak';
+
 export const telemetry = {
-    handler
-}
+    handler,
+};
 
-// deno-lint-ignore no-explicit-any
-async function handler(ctx: any, next: any) {
-
+async function handler(ctx: Context, next: () => Promise<unknown>) {
     // Future editions of this middleware may
     // opt to send telemetry to a specialist
     // reporting service. For now, reporting

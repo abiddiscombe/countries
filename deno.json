@@ -6,12 +6,12 @@
     "singleQuote": true
   },
   "tasks": {
-    "dev": "deno run --allow-net --allow-env --watch src/main.ts",
-    "start": "deno run --allow-net --allow-env src/main.ts"
+    "dev": "deno run --allow-net --allow-env --allow-read --watch src/main.ts",
+    "start": "deno run --allow-net --allow-env --allow-read src/main.ts"
   },
   "imports": {
-    "oak": "https://deno.land/x/oak/mod.ts",
-    "mongo": "https://deno.land/x/mongo/mod.ts",
-    "@turf/turf": "npm:@turf/turf"
+    "oak": "https://deno.land/x/oak@v11.1.0/mod.ts",
+    "@turf/turf": "npm:@turf/turf",
+    "geojsonTypes": "npm:@types/geojson"
   }
 }

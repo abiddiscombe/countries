@@ -1,18 +1,15 @@
 // src/controllers/root.ts
 
-// deno-lint-ignore no-explicit-any
-export function root(ctx: any) {
-    const header = {
+import { type RouterContext } from 'oak';
+
+export function root(ctx: RouterContext<'/'>) {
+    ctx.response.body = {
         time: Math.floor(Date.now() / 1000),
         host: 'Countries API',
-        title: 'Country Outline'
-    };
-    ctx.response.body = {
-        ...header,
         title: 'Homepage & API Capabilities',
         about: {
             source: 'https://github.com/abiddiscombe/countries',
-            version: '4.2.0',
+            version: '4.3.0',
             cors: {
                 origin: ctx.response.headers.get('Access-Control-Allow-Origin'),
             },

@@ -1,13 +1,19 @@
 # 🌱 Changelog
 
+## Version 4.3.0
+
+- [x] `#FEAT` / `#DOCS` - Migrated from MongoDB to local GeoJSON.
+- [x] `#FEAT` - Resolved Oak/Typescript linting issues.
+- [x] `#FEAT` - Added the capability to disable Flags API integration.
+
 ## Version 4.2.0
 
-- [x] #FIX - Invalid HTTP error codes when point param missing on `/distance`.
-- [x] #FEAT - Log incoming requests to console via middleware.
-- [x] #STYLE - Update global formatting: indent width, line length, single quotes.
-- [x] #REFACTOR - Update import and export statement syntax.
-- [x] #REFACTOR - Depreciate existing console logging mechanism.
-- [x] #REFACTOR - Update existing middleware implementation.
+- [x] `#FIX` - Invalid HTTP error codes when point param missing on `/distance`.
+- [x] `#FEAT` - Log incoming requests to console via middleware.
+- [x] `#STYLE` - Update global formatting: indent width, line length, single quotes.
+- [x] `#REFACTOR` - Update import and export statement syntax.
+- [x] `#REFACTOR` - Depreciate existing console logging mechanism.
+- [x] `#REFACTOR` - Update existing middleware implementation.
 
 ## Version 4.1.0 
 - [x] `#FIX` Hotfix removal of `-99` ISO_A3 countries from source database.

@@ -1,11 +1,12 @@
 // src/middlewares/resourceNotFound.ts
 
-export const resourceNotFound = {
-    handler
-}
+import { type Context } from 'oak';
 
-// deno-lint-ignore no-explicit-any
-function handler(ctx: any) {
+export const resourceNotFound = {
+    handler,
+};
+
+function handler(ctx: Context) {
     ctx.response.status = 404;
     ctx.response.body = {
         ...ctx.state.header,
