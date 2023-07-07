@@ -9,7 +9,7 @@ export function root(ctx: RouterContext<'/'>) {
         title: 'Homepage & API Capabilities',
         about: {
             source: 'https://github.com/abiddiscombe/countries',
-            version: '4.2.0',
+            version: '4.3.0',
             cors: {
                 origin: ctx.response.headers.get('Access-Control-Allow-Origin'),
             },
