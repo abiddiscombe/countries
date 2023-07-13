@@ -8,7 +8,7 @@ Example: `/country/gb/outline`
 A service for fetching country metadata and GeoJSON geometries, built with [Deno](https://deno.com/runtime) and the [Oak](https://oakserver.github.io/oak/) framework and published on [Docker Hub](https://hub.docker.com/r/abiddiscombe/countries). The data for this service is adapted from the [Countries GeoJSON](https://github.com/datasets/geo-countries) project, with all `-99` ISO_A3 features removed.
 
 > **Demo**\
-> Browse Country Outlines with the [Countries API Demo](https://countries-ui.pages.dev/)! Please be advised that the underlying API service (https://countries-demo.abws.io) is hosted via GCP Cloud Run and is subject to cold starts.
+> Browse Country Outlines with the [Countries API Demo](https://countries-ui.pages.dev/)! Please be advised that the underlying API service (https://countries.archiebiddiscombe.net) is hosted via GCP Cloud Run and is subject to cold starts.
 
 ## API Endpoints
 All endpoints permit a `GET` request and will return Geo/JSON. Where specified, an `isoCode` represents the official `ISO_A2` code of a country, [read more here](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
