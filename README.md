@@ -1,10 +1,13 @@
 # 🗺️ Countries API
 
 > **Archived :(**\
-> This project has been archived and is no longer recieving bug fixes or security updates.
+> This project has been archived and is no longer recieving bug fixes or security updates. You can still access a demo of this project at [ab-rnd-countries-demo.onrender.com](https://ab-rnd-countries-demo.onrender.com) that is subject to (~8 sec) cold starts.
+
+---
+
+Example: `/country/gb/outline`
 
 ![Example country outline for "gb", demonstrated on top of an OpenStreetMap basemap.](./media/banner.png)
-Example: `/country/gb/outline`
 
 ---
 
