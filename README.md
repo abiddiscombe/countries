@@ -2,7 +2,7 @@
 
 > **Archived :(**\
 > This project has been archived and is no longer recieving bug fixes or security updates. \
-> You can still access a demo of this project at [ab-demo-countries-server.orangemoss-a1ac3f33.uksouth.azurecontainerapps.io](https://ab-demo-countries-server.orangemoss-a1ac3f33.uksouth.azurecontainerapps.io). The demo app is spun-up on demand and thus subject to (~8 sec) cold starts.
+> You can still access a demo at https://ab-countriesapi-demo.onrender.com - this instance is spun-up on demand and subject to a cold start of up to 60 seconds.
 
 ---
 
