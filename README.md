@@ -2,7 +2,6 @@
 
 > **Archived :(**\
 > This project has been archived and is no longer recieving bug fixes or security updates. \
-> You can still access a demo at https://ab-countriesapi-demo.onrender.com - this instance is spun-up on demand and subject to a cold start of up to 60 seconds.
 
 ---
 
@@ -12,7 +11,7 @@ Example: `/country/gb/outline`
 
 ---
 
-A service for fetching country metadata and GeoJSON geometries, built with [Deno](https://deno.com/runtime) and the [Oak](https://oakserver.github.io/oak/) framework and published on [Docker Hub](https://hub.docker.com/r/abiddiscombe/countries). The data for this service is adapted from the [Countries GeoJSON](https://github.com/datasets/geo-countries) project, with all `-99` ISO_A3 features removed.
+A service for fetching country metadata and GeoJSON geometries, built with [Deno](https://deno.com/runtime) and the [Oak](https://oakserver.github.io/oak/) framework and ~~published on [Docker Hub]()~~. The data for this service is adapted from the [Countries GeoJSON](https://github.com/datasets/geo-countries) project, with all `-99` ISO_A3 features removed.
 
 ## API Endpoints
 All endpoints permit a `GET` request and will return Geo/JSON. Where specified, an `isoCode` represents the official `ISO_A2` code of a country, [read more here](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
@@ -42,7 +41,7 @@ Prior to version 4.3.0, the Countries API used MongoDB to store each feature. Th
 - Further geospatial capabilities (via the [turf](https://turfjs.org/) module).
 
 ## Deployment Instructions
-Deploying an instance of the Countries API is as simple as pulling the image, `abiddiscombe/countries`, from [Docker Hub](https://hub.docker.com/r/abiddiscombe/countries) and starting the server (on internal port 8080).\
+Deploying an instance of the Countries API is as simple as pulling the image, `abiddiscombe/countries`, ~~from [Docker Hub]()~~ and starting the server (on internal port 8080).\
 The deployment can be customised via environment variables:
 
 - `AUTH_TOKEN`\
